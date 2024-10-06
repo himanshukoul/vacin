@@ -1,0 +1,456 @@
+WindowManager:
+    FirstWindow:
+    SecondWindow:                  #second to fifth child of 1 window
+    ThirdWindow:
+    FourthWindow:
+    FifthWindow:
+    SixthWindow:                   #sixth, seventh, eighth child of 2nd window
+    SeventhWindow:
+    EighthWindow:
+        id: eighth
+        name: "eighth"
+    NinthWindow:
+        tiger: eighth.a1
+        jaguar: eighth.b1             #binding with eighth window
+        lynx: eighth.c1
+    TenthWindow:
+    AadharWindow:
+        id: aadhar
+        name: "aadhar"
+    Error1Window:
+    Error2Window:
+    Dose1Window:
+        name_vac: dose1string.n1
+        type_vac: dose1string.t1
+        dose_vac: dose1string.do1
+        date_vac: dose1string.da1
+        centre_vac: dose1string.c1
+    Dose1stringWindow:
+        id: dose1string
+        name: "dose1string"
+    Dose2Window:
+        id: dose2
+        name: "dose2"
+    Dose2stringWindow:
+        dose2_vac: dose2.do2
+        date2_vac: dose2.da2
+        centre2_vac: dose2.c2
+    ErrorvacnameWindow:
+
+
+<FirstWindow>:
+    id: first
+    name: "first"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:
+                """1 for data input
+                2 for accessing data (GOV. officials)
+                3 for link to aadhar card creation
+                4 to exit"""
+            font_size: 16
+        TextInput:
+            multiline: False
+            id: fwi                                    #firstwindowinput
+        Button:
+            text:"NEXT SCREEN"
+            font_size:32
+            on_release:
+
+                if fwi.text == "1": app.root.current = "second"
+                elif fwi.text =="2": app.root.current = "third"
+                elif fwi.text =="3": app.root.current = "fourth"
+                elif fwi.text =="4": app.root.current = "fifth"
+                root.manager.transition.direction = "left"
+                fwi.text =""
+
+<SecondWindow>:
+    id: second
+    name: "second"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"aadhar no"
+            font_size: 32
+        TextInput:
+            multiline: False
+            id: swi
+        Button:
+            text:"go back"
+            font_size:32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+        Button:
+            text:"next"
+            font_size:32
+            on_release:
+                zebra = second.adar(swi.text)
+                if zebra == "alpha": app.root.current = "sixth"
+                if zebra == "beta": app.root.current = "seventh"
+                if zebra == "gamma": app.root.current = "eighth"
+                root.manager.transition.direction = "left"
+                swi.text =""
+
+<ThirdWindow>:
+    id: third
+    name : "third"
+    GridLayout:
+        cols: 2
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"username"
+            font_size: 32
+        TextInput:
+            id: login
+        Label:
+            text:"password"
+            font_size: 32
+        TextInput:
+            id: passw
+        Button:
+            text: "LOGIN"
+            on_release:
+                logu=third.do_login_user(login.text)
+                logp=third.do_login_pass(passw.text)
+                if logu == "loguser" and logp == "logpass": app.root.current = "aadhar"
+                if logu == "notuser" and logp == "notpass": app.root.current = "error1"
+                root.manager.transition.direction = "left"
+                login.text =""
+                passw.text =""
+        Button:
+            text: "BACK"
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "left"
+<FourthWindow>:
+    id: fourth
+    name : "fourth"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"aadhar card creation {ayush}"
+            font_size: 32
+        TextInput:
+            multiline: False
+            id: fowi
+        Button:
+            text:"go back"
+            font_size:32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+
+<FifthWindow>:
+    id: fifth
+    name : "fifth"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"THANK U FOR VISITING"
+            font_size: 32
+        Button:
+            text:"EXIT"
+            font_size:32
+            on_release:
+                fifth.pegasus()
+
+<SixthWindow>:
+    id: sixth
+    name : "sixth"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"either check your aadhar card no. or create one"
+            font_size: 32
+        Button:
+            text:"go back"
+            font_size:32
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "right"
+
+<SeventhWindow>:
+    id: seventh
+    name : "seventh"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            id: lab1
+            text:"you have already registered"
+            font_size: 32
+        Button:
+            text:"back"
+            font_size:32
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "right"
+        Button:
+            text:"get info"
+            font_size:32
+            on_release:
+                root.arceus()
+
+<EighthWindow>:
+    id: eighth
+    name : "eighth"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:
+                """pincode
+                name
+                gender"""
+            font_size: 16
+        TextInput:
+            multiline: False
+            id: ewi1
+        TextInput:
+            multiline: False
+            id: ewi2
+        TextInput:
+            multiline: False
+            id: ewi3
+        Button:
+            text:"go back"
+            font_size:32
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "right"
+        Button:
+            text:"next:"
+            font_size:32
+            on_release:
+                lion = eighth.pinchk(ewi1.text,ewi2.text,ewi3.text)
+                root.f5()
+                if lion == 1: app.root.current = "ninth"
+                else: app.root.current = "tenth"
+                ewi1.text=""
+                ewi2.text=""
+                ewi3.text=""
+
+<NinthWindow>:
+    id: ninth
+    name: "ninth"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"Thank u '{}' for registering ! ur centre is: '{}' and time: '{}'".format(root.tiger,root.lynx,root.jaguar)
+            font_size: 16
+        Button:
+            text:"back"
+            font_size:32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+
+<TenthWindow>:
+    id: tenth
+    name: "tenth"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"either put right pincode or vaccine isnt available in ur zone, We will soon provide it"
+            font_size: 32
+        Button:
+            text:"back"
+            font_size:32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+
+<AadharWindow>:
+    id: aadhar
+    name : "aadhar"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"Type your aadhar number"
+            font_size: 32
+        TextInput:
+            multiline: False
+            id: entry
+        Button:
+            text:"next"
+            font_size:32
+            on_release:
+                aadhar_entry = aadhar.aadharinput(entry.text)
+                dos=aadhar.dosecheck()
+                if aadhar_entry == "aadhar_present" and dos == 1: app.root.current = "dose1string"
+                if aadhar_entry == "aadhar_present" and dos == 2: app.root.current = "dose2"
+                if aadhar_entry == "aadhar_present" and dos == -1: app.root.current = "completed"
+                if aadhar_entry == "aadhar_notpresent": app.root.current = "error2"
+                entry.text =""
+        Button:
+            text:"BACK"
+            font_size:32
+            on_release:
+                app.root.current = "third"
+                root.manager.transition.direction = "left"
+<Error1Window>:
+    id: error1
+    name : "error1"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"Invalid username/password"
+            font_size: 32
+        Button:
+            text:"Try again"
+            font_size:32
+            on_release:
+                app.root.current = "third"
+                root.manager.transition.direction = "right"
+
+<Error2Window>:
+    id: error2
+    name : "error2"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"Please enter correct one or register first"
+            font_size: 32
+        Button:
+            text:"Try again"
+            font_size:32
+            on_release:
+                app.root.current = "aadhar"
+                root.manager.transition.direction = "right"
+
+<Dose1Window>:
+    id: dose1
+    name : "dose1"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"'{}' your vaccine type '{}' dose {} is on '{}' at '{}'".format(root.name_vac,root.type_vac,root.dose_vac,root.date_vac,root.centre_vac)
+            font_size: 22
+        Button:
+            text:"ok"
+            font_size:32
+            on_release:
+                app.root.current = "dose2"
+                root.manager.transition.direction = "right"
+
+<Dose1stringWindow>:
+    id: dose1string
+    name : "dose1string"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:
+                """What vaccine are you providing to your client?
+                1 > covishield
+                2 > covaxin"""
+            font_size: 32
+        TextInput:
+            multiline: False
+            id: vaccname
+        Button:
+            text:"Next"
+            font_size:32
+            on_release:
+                v = dose1string.names(vaccname.text)
+                root.link()
+                if v == 1: app.root.current = "dose1"
+                else: app.root.current = "errorvacname"
+                root.manager.transition.direction = "left"
+                vaccname.text=""
+
+<Dose2Window>:
+    id: dose2
+    name : "dose2"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"Your first dose is done click next for dose 2 date"
+            font_size: 32
+        Button:
+            text:"next"
+            font_size:32
+            on_release:
+                abc=dose2.abcd()
+                root.link2()
+                app.root.current = "dose2string"
+                root.manager.transition.direction = "right"
+<Dose2stringWindow>:
+    id: dose2string
+    name : "dose2string"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"Your dose {} is on '{}' at '{}'".format(root.dose2_vac,root.date2_vac,root.centre2_vac)
+            font_size: 32
+        Button:
+            text:"back"
+            font_size:32
+            on_release:
+
+                app.root.current = "aadhar"
+                root.manager.transition.direction = "right"
+<ErrorvacnameWindow>:
+    id: errorvacname
+    name : "errorvacname"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"Not a valid name"
+            font_size: 32
+        Button:
+            text:"next"
+            font_size:32
+            on_release:
+                app.root.current = "dose1string"
+                root.manager.transition.direction = "right"

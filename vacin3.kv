@@ -1,0 +1,1089 @@
+WindowManager:
+    LegendWindow:
+    FirstWindow:
+    ZerowthWindow:
+    SecondWindow:
+    ThirdWindow:
+    FifthWindow:
+    SixthWindow:
+    SeventhWindow:
+    SeventhdashWindow:
+    EighthWindow:
+        id: eighth
+        name: "eighth"
+    AdninthWindow:
+        id: adninth
+        name: "adninth"
+    New1Window:
+        a: adninth.p
+        b: adninth.q
+        c: adninth.r
+        d: adninth.s
+        e: adninth.t
+        f: adninth.u
+        g: adninth.v
+    New2Window:
+    New3Window:
+    New4Window:
+        id: new4
+        name: "new4"
+    NinthWindow:
+        tiger: new4.parrot
+        lynx: new4.crow
+    TenthWindow:
+    EleventhWindow:
+    TwelfthWindow:
+    ThirteenthWindow:
+    MasterWindow:
+    FourteenWindow:
+        New5Window:
+    FifteenWindow:
+    CreditsWindow:
+    CheckWindow:
+        id: check
+        name: "check"
+    Error1Window:
+    Error2Window:
+    Dose1stringWindow:
+        id: dose1string
+        name: "dose1string"
+    ErrorvacnameWindow:
+    MatchWindow:
+        id: match
+        name: "match"
+    ConfirmWindow:
+    OkWindow:
+        id: ok
+        name: "ok"
+    NotokWindow:
+    MessageWindow:
+        hid_vac: match.hi
+        hcentre_vac: match.hc
+        pid_vac: match.pi
+        type_vac: match.t1
+        dose_vac: match.do1
+        date_vac: match.da1
+    PastWindow:
+        date_vac: match.da1
+    FutureWindow:
+        date_vac: match.da1
+
+<LegendWindow>:
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "vac009.jpg"
+    AnchorLayout:
+        anchor_x: "center"
+        anchor_y: "bottom"
+        Button:
+            canvas:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "strt.jpg"
+            text: "start"
+            font_size: 32
+            size_hint_y: None
+            size_hint_x: None
+            height: 150
+            width: 300
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "left"
+    AnchorLayout:
+        anchor_x: "center"
+        anchor_y: "top"
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 1,1,0,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            text: """  WELCOME
+                TO COVITAB"""
+            color: 1,0,0,1
+            font_size: 40
+            size_hint: (None,None)
+            size: self.texture_size
+
+<ZerowthWindow>:
+    id: zerowth
+    name: "zerowth"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: "enter MYSQL password"
+            font_size: 32
+        TextInput:
+            multiline: False
+            id: mysq
+        Button:
+            text: "submit"
+            font_size: 32
+            on_release:
+                phoneix = zerowth.backe(mysq.text)
+                if phoneix == 1: app.root.current = "eleventh"
+                elif phoneix == -1: app.root.current = "twelfth"
+                mysq.text = ""
+                root.manager.transition.direction = "left"
+        Button:
+            text: "BACK"
+            font_size: 32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "left"
+
+<FirstWindow>:
+    id: first
+    name: "first"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: """1 for data input
+                2 for accessing data (GOV. officials)
+                3 to exit
+                4 create Backend
+                5 for master changes"""
+            font_size: 16
+        TextInput:
+            multiline: False
+            id: fwi
+        Button:
+            text: "NEXT SCREEN"
+            font_size: 32
+            on_release:
+                snake = first.strt()
+                if snake == 0 and fwi.text in ("1","2","3","6"): app.root.current = "thirteenth"
+                elif fwi.text == "1": app.root.current = "second"
+                elif fwi.text == "2": app.root.current = "third"
+                elif fwi.text == "3": app.root.current = "fifth"
+                elif fwi.text == "4": app.root.current = "zerowth"
+                elif fwi.text == "5": app.root.current = "master"
+                root.manager.transition.direction = "left"
+                fwi.text = ""
+
+<SecondWindow>:
+    id: second
+    name: "second"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: "aadhar no"
+            font_size: 32
+        TextInput:
+            multiline: False
+            id: swi
+        Button:
+            text: "go back"
+            font_size: 32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+        Button:
+            text: "next"
+            font_size: 32
+            on_release:
+                zebra = second.adar(swi.text)
+                if zebra == "alpha": app.root.current = "sixth"
+                if zebra == "beta": app.root.current = "seventh"
+                if zebra == "gamma": app.root.current = "eighth"
+                if zebra == "delta": app.root.current = "seventhdash"
+                root.manager.transition.direction = "left"
+                swi.text = ""
+
+<ThirdWindow>:
+    id: third
+    name: "third"
+    GridLayout:
+        cols: 2
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: "username"
+            font_size: 32
+        TextInput:
+            id: login
+        Label:
+            text: "password"
+            font_size: 32
+        TextInput:
+            id: passw
+        Button:
+            text: "LOGIN"
+            on_release:
+                logu = third.do_login_user(login.text)
+                logp = third.do_login_pass(passw.text)
+                if logu == "loguser" and logp == "logpass": app.root.current = "check"
+                if logu == "notuser" and logp == "notpass": app.root.current = "error1"
+                root.manager.transition.direction = "left"
+                login.text = ""
+                passw.text = ""
+        Button:
+            text: "BACK"
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "left"
+
+<FifthWindow>:
+    id: fifth
+    name: "fifth"
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "smiley1.jpg"
+    AnchorLayout:
+        anchor_x: "center"
+        anchor_y: "center"
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0,0,0,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            text: "THANK U FOR VISITING"
+            font_size: 50
+            color: 1,0,1,1
+            size_hint: (None,None)
+            size: self.texture_size
+    AnchorLayout:
+        anchor_x: "center"
+        anchor_y: "bottom"
+        Button:
+            canvas:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "exit.png"
+            text: "EXIT"
+            font_size: 32
+            size_hint_y: None
+            size_hint_x: None
+            height: 100
+            width: 200
+            on_release:
+                fifth.pegasus()
+    AnchorLayout:
+        anchor_x: "right"
+        anchor_y: "top"
+        Button:
+            canvas:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "credits.jpg"
+            text: "credits"
+            font_size: 32
+            size_hint_y: None
+            size_hint_x: None
+            height: 100
+            width: 200
+            on_release:
+                app.root.current = "credits"
+                root.manager.transition.direction = "right"
+    AnchorLayout:
+        anchor_x: "right"
+        anchor_y: "bottom"
+        Button:
+            text: "go back"
+            font_size: 32
+            size_hint_y: None
+            size_hint_x: None
+            height: 100
+            width: 200
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+
+# ... (continued in the same style for the remaining windows)
+<SixthWindow>:
+    id: sixth
+    name: "sixth"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: "wrong aadhar card no."
+            font_size: 32
+        Button:
+            text: "go back"
+            font_size: 32
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "right"
+
+<SeventhWindow>:
+    id: seventh
+    name: "seventh"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            id: lab1
+            text: "you have already registered"
+            font_size: 32
+        Button:
+            text: "back"
+            font_size: 32
+            on_release:
+                app.root.current = "second"
+                lab1.text = "you have already registered"
+                root.manager.transition.direction = "right"
+        Button:
+            text: "get info"
+            font_size: 32
+            on_release:
+                root.arceus()
+
+<SeventhdashWindow>:
+    id: seventhdash
+    name: "seventhdash"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: "all doses done"
+            font_size: 32
+
+<EighthWindow>:
+    id: eighth
+    name: "eighth"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: "pincode"
+            font_size: 16
+        TextInput:
+            multiline: False
+            id: ewi1
+        Button:
+            text: "go back"
+            font_size: 32
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "right"
+        Button:
+            text: "next"
+            font_size: 32
+            on_release:
+                lion = eighth.pinchk(ewi1.text)
+                if lion == 1: app.root.current = "adninth"
+                else: app.root.current = "tenth"
+                ewi1.text = ""
+
+<AdninthWindow>:
+    id: adninth
+    name: "adninth"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: "mobile no."
+            font_size: 16
+        Label:
+            text: "otp"
+            font_size: 16
+        TextInput:
+            multiline: False
+            id: mb1
+        TextInput:
+            multiline: False
+            id: otp1
+        Button:
+            text: "send otp"
+            font_size: 32
+            on_release:
+                root.f13(mb1.text)
+        Button:
+            text: "confirm otp"
+            font_size: 32
+            on_release:
+                swan = root.f15(otp1.text)
+                root.f45()
+                if swan == 1: app.root.current = "new1"
+                else: app.root.current = "new2"
+                mb1.text = ""
+                otp1.text = ""
+        Button:
+            text: "back"
+            font_size: 32
+            on_release:
+                app.root.current = "eighth"
+                root.manager.transition.direction = "right"
+
+<New1Window>:
+    id: new1
+    name: "new1"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: "date"
+            font_size: 32
+        Button:
+            text: "{}".format(root.a)
+            font_size: 20
+            on_release:
+                root.f1(root.a)
+                app.root.current = "new3"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "{}".format(root.b)
+            font_size: 20
+            on_release:
+                root.f1(root.b)
+                app.root.current = "new3"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "{}".format(root.c)
+            font_size: 20
+            on_release:
+                root.f1(root.c)
+                app.root.current = "new3"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "{}".format(root.d)
+            font_size: 20
+            on_release:
+                root.f1(root.d)
+                app.root.current = "new3"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "{}".format(root.e)
+            font_size: 20
+            on_release:
+                root.f1(root.e)
+                app.root.current = "new3"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "{}".format(root.f)
+            font_size: 20
+            on_release:
+                root.f1(root.f)
+                app.root.current = "new3"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "{}".format(root.g)
+            font_size: 20
+            on_release:
+                root.f1(root.g)
+                app.root.current = "new3"
+                root.manager.transition.direction = "left"
+
+<New2Window>:
+    id: new2
+    name: "new2"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: "wrong otp"
+            font_size: 20
+        Button:
+            text: "back"
+            font_size: 32
+            on_release:
+                app.root.current = "adninth"
+                root.manager.transition.direction = "right"
+
+<New3Window>:
+    id: new3
+    name: "new3"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: "time"
+            font_size: 32
+        Button:
+            text: "9am - 11am"
+            font_size: 20
+            on_release:
+                root.f1("9am - 11am")
+                app.root.current = "new4"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "11am - 1pm"
+            font_size: 20
+            on_release:
+                root.f1("11am - 1pm")
+                app.root.current = "new4"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "2pm - 4pm"
+            font_size: 20
+            on_release:
+                root.f1("2pm - 4pm")
+                app.root.current = "new4"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "4pm - 6pm"
+            font_size: 20
+            on_release:
+                root.f1("4pm - 6pm")
+                app.root.current = "new4"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "go back"
+            font_size: 32
+            on_release:
+                app.root.current = "new1"
+                root.manager.transition.direction = "right"
+<New4Window>:
+    id: new4
+    name: "new4"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text:
+                """name
+                gender"""
+            font_size: 32
+        TextInput:
+            multiline: False
+            id: x1
+        TextInput:
+            multiline: False
+            id: x2
+        Button:
+            text:"go back"
+            font_size:32
+            on_release:
+                app.root.current = "new3"
+                root.manager.transition.direction = "right"
+        Button:
+            text:"next"
+            font_size:32
+            on_release:
+                root.f7(x1.text,x2.text)
+                x1.text = ""
+                x2.text = ""
+                app.root.current = "ninth"
+                root.manager.transition.direction = "left"
+
+<NinthWindow>:
+    id: ninth
+    name: "ninth"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+
+    Label:
+        text:"Thank u {} for registering ! ur centre is: {}".format(root.tiger,root.lynx)
+        font_size: 16
+    Button:
+        text:"back"
+        font_size:32
+        on_release:
+            app.root.current = "first"
+            root.manager.transition.direction = "right"
+<TenthWindow>:
+    id: tenth
+    name: "tenth"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"either put right pincode or no vaccine available"
+            font_size: 32
+        Button:
+            text:"back"
+            font_size:32
+            on_release:
+                app.root.current = "eighth"
+                root.manager.transition.direction = "right"
+
+
+<EleventhWindow>:
+    id: eleventh
+    name: "eleventh"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text:"BACKEND CREATED"
+            font_size: 32
+        Button:
+            text:"next"
+            font_size:32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+<TwelfthWindow>:
+    id: twelfth
+    name: "twelfth"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text:"ENTER CORRECT MYSQL PASSWD"
+            font_size: 32
+        Button:
+            text:"back"
+            font_size:32
+            on_release:
+                app.root.current = "zerowth"
+                root.manager.transition.direction = "right"
+<ThirteenthWindow>:
+    id: thirteenth
+    name: "thirteenth"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text:"CREATE BACKEND FIRST"
+            font_size: 32
+        Button:
+            text:"back"
+            font_size:32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+<MasterWindow>:
+    id: master
+    name : "master"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+
+        Label:
+            text:"authentication key"
+            font_size: 32
+        TextInput:
+            id: auckey
+        Button:
+            text:"go back"
+            font_size:32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "left"
+        Button:
+            text:"verify"
+            font_size:32
+            on_release:
+                whale = master.f67(auckey.text)
+                auckey.text = ""
+                if whale == 1: app.root.current = "fourteen"
+                elif whale == -1: app.root.current = "fifteen"
+                root.manager.transition.direction = "right"
+
+<FourteenWindow>:
+    id: fourteen
+    name: "fourteen"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            id: us
+            text:""
+            font_size:32
+        Label:
+            text:"username"
+            font_size:32
+        TextInput:
+            multiline: False
+            id:rex
+        Label:
+            text:"passwd."
+            font_size:32
+        TextInput:
+            multiline: False
+            id:sun
+        Button:
+            text:"add new usernames"
+            font_size:32
+            on_release:
+                root.f100(rex.text,sun.text)
+                sun.text = ""
+                rex.text = ""
+        Button:
+            text:"delete existing usernames"
+            font_size:32
+
+            on_release:
+                root.f101(rex.text,sun.text)
+                sun.text = ""
+                rex.text = ""
+        Button:
+            text:"refill vaccines"
+            font_size:32
+            on_release:
+                app.root.current = "new5"
+                root.manager.transition.direction = "right"
+        Button:
+            text:"back"
+            font_size:32
+            on_release:
+                us.text = ""
+                app.root.current = "first"
+                root.manager.transition.direction = "left"
+<New5Window>:
+    id: new5
+    name: "new5"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text:"centre id"
+            font_size: 20
+
+        Label:
+            text:"vaccines"
+            font_size: 20
+        TextInput:
+            multiline: False
+            id: z1
+        TextInput:
+            multiline: False
+            id: z2
+        Button:
+            text:"add vac."
+            font_size:32
+            on_release:
+                root.f99(z1.text,z2.text)
+                z1.text = ""
+                z2.text = ""
+        Button:
+            text:"back"
+            font_size:32
+            on_release:
+                app.root.current = "fourteen"
+                root.manager.transition.direction = "left"
+                z1.text = ""
+                z2.text = ""
+
+
+
+<FifteenWindow>:
+    id: fifteen
+    name: "fifteen"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text:"Wrong Authentication key"
+            font_size: 32
+        Button:
+            text:"back"
+            font_size:32
+            on_release:
+                app.root.current = "master"
+                root.manager.transition.direction = "left"
+<CreditsWindow>:
+    id: credits
+    name: "credits"
+    AnchorLayout:
+        anchor_x: "left"
+        anchor_y: "top"
+        Label:
+            id: n1
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            text:""
+            font_size: 45
+            color: 0,0,0,1
+            size_hint: (None,None)
+            size: self.texture_size
+    AnchorLayout:
+        anchor_x: "right"
+        anchor_y: "top"
+        Label:
+            id: n2
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            text:""
+            font_size: 45
+            color: 0,0,0,1
+            size_hint: (None,None)
+            size: self.texture_size
+    AnchorLayout:
+        anchor_x: "right"
+        anchor_y: "bottom"
+        Label:
+            id: n3
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            text:""
+            font_size: 45
+            color: 0,0,0,1
+            size_hint: (None,None)
+            size: self.texture_size
+    AnchorLayout:
+        anchor_x: "left"
+        anchor_y: "bottom"
+        Label:
+            id: n4
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            text:""
+            font_size: 45
+            color: 0,0,0,1
+            size_hint: (None,None)
+            size: self.texture_size
+    AnchorLayout:
+        id: anchr
+        anchor_x: "center"
+        anchor_y: "center"
+        Button:
+            canvas:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "anch.jpg"
+            text:""
+            font_size: 20
+            size_hint_y: None
+            size_hint_x: None
+            height:100
+            width:100
+            on_release:
+                root.f109()
+    AnchorLayout:
+        anchor_x: "center"
+        anchor_y: "bottom"
+        Button:
+            id: ex
+            canvas:
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: "exit.png"
+            text:""
+            font_size: 20
+            size_hint_y: None
+            size_hint_x: None
+            height:50
+            width:50
+            on_release:
+                root.g5()
+
+<CheckWindow>:
+    id: check
+    name : "check"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text:"Type your phone number"
+            font_size: 32
+        TextInput:
+            multiline: False
+            id: entry
+        Button:
+            text:"next"
+            font_size:32
+            on_release:
+                check_entry = check.phnoinput(entry.text)
+                dos=check.dosecheck()
+                if check_entry == "phno_present" and dos == 1: app.root.current = "dose1string"
+                elif check_entry == "phno_present" and dos == 2: app.root.current = "match"
+                elif check_entry == "phno_notpresent": app.root.current = "error2"
+                entry.text =""
+        Button:
+            text:"BACK"
+            font_size:32
+            on_release:
+                app.root.current = "third"
+                root.manager.transition.direction = "left"
+
+<Error1Window>:
+    id: error1
+    name : "error1"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text:"Invalid username/password"
+            font_size: 32
+        Button:
+            text:"Try again"
+            font_size:32
+            on_release:
+                app.root.current = "third"
+                root.manager.transition.direction = "right"
+
+<Error2Window>:
+    id: error2
+    name : "error2"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"Please enter correct one or register first"
+            font_size: 32
+        Button:
+            text:"Try again"
+            font_size:32
+            on_release:
+                app.root.current = "check"
+                root.manager.transition.direction = "right"
+
+<Dose1stringWindow>:
+    id: dose1string
+    name : "dose1string"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:
+                """What vaccine are you providing to your client?
+                1 > covishield
+                2 > covaxin"""
+            font_size: 32
+        TextInput:
+            multiline: False
+            id: vaccname
+        Button:
+            text:"Next"
+            font_size:32
+            on_release:
+                v = dose1string.names(vaccname.text)
+                if v == 1: app.root.current = "check"
+                else: app.root.current = "errorvacname"
+                root.manager.transition.direction = "left"
+                vaccname.text=""
+
+<ErrorvacnameWindow>:
+    id: errorvacname
+    name : "errorvacname"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"Not a valid name"
+            font_size: 32
+        Button:
+            text:"next"
+            font_size:32
+            on_release:
+                app.root.current = "dose1string"
+                root.manager.transition.direction = "right"
+<MatchWindow>:
+    id: match
+    name : "match"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+
+        Label:
+            text:"checking details..."
+            font_size: 32
+        Button:
+            text:"next"
+            font_size:32
+            on_release:
+                ghd=match.gethospdetails()
+                gpd=match.getpindetails()
+                dl=match.doseconfirm()
+                dd=match.dosedeails()
+                f=match.dateget()
+                root.linkh()
+                root.linkp()
+                root.link()
+                if f == 1 and dl[0]=="n": app.root.current = "confirm"
+                elif f == 2 : app.root.current = "past"
+                elif f == 3 : app.root.current = "future"
+                elif f == 0 : app.root.current = "dose1string"
+                else: app.root.current = "message"
+                root.manager.transition.direction = "right"
+<ConfirmWindow>:
+    id: confirm
+    name : "confirm”
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"do you want to confirm your dose?"
+            font_size: 32
+        Button:
+            text:"yes"
+            font_size:32
+            on_release:
+                app.root.current = "ok"
+                root.manager.transition.direction = "right"
+        Button:
+            text:"no"
+            font_size:32
+            on_release:
+                app.root.current = "notok"
+                root.manager.transition.direction = "right"
+<OkWindow>:
+    id: ok
+    name : "ok"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"your dose has been confirmed"
+            font_size: 32
+
+        Button:
+            text:"next"
+            font_size:32
+            on_release:
+                ntoy=ok.up()
+                app.root.current = "message"
+                root.manager.transition.direction = "right"
+<NotokWindow>:
+    id: notok
+    name : "notok"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text:"your dose is not confirmed"
+            font_size: 32
+        Button:
+            text:"back"
+            font_size:32
+            on_release:
+                app.root.current = "check"
+                root.manager.transition.direction = "right"
+
+
+
